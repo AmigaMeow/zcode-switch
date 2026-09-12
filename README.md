@@ -56,11 +56,11 @@ CLI 密码（export / import）：优先环境变量 `ZSW_PASSWORD`（不出现�
 ```bash
 npm install
 npm run tauri dev      # 开发（HMR）
-npm run tauri build    # NSIS 安装包
+npm run tauri build    # Windows：NSIS；macOS：.app + .dmg（Apple 芯片）
 cd src-tauri && cargo test   # 单元测试（含 node↔Rust 跨语言加密向量）
 ```
 
-Windows 优先（路径探测 / 进程管理 / 托盘均为 Win32 语义）。
+构建会根据当前平台加载对应配置：macOS 使用 `src-tauri/tauri.macos.conf.json`，生成可直接打开的 Apple 芯片 `.app` 与 `.dmg`，并使用 ad-hoc 签名保证应用包资源校验完整；它没有 Apple Developer 证书或公证，首次从网络打开时仍可能需要在 Finder 中右键选择「打开」。Windows 的路径探测 / 进程管理 / 托盘仍按 Win32 语义实现。
 
 ## License
 

@@ -1,0 +1,9 @@
+{
+  "identifier": "com.zswitch.desktop",
+  "bundle": {
+    "targets": ["app", "dmg"],
+    "macOS": {
+      "signingIdentity": "-"
+    }
+  }
+}

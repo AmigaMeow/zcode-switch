@@ -56,11 +56,11 @@ The embedded login/captcha pages are rendered by the system WebView, which relay
 ```bash
 npm install
 npm run tauri dev      # development (HMR)
-npm run tauri build    # NSIS installer
+npm run tauri build    # Windows: NSIS; macOS: .app + .dmg (Apple Silicon)
 cd src-tauri && cargo test   # unit tests (incl. node↔Rust cross-language crypto vectors)
 ```
 
-Windows-first (path detection / process management / tray are all Win32 semantics).
+The build loads a platform-specific configuration: on macOS, `src-tauri/tauri.macos.conf.json` produces an Apple Silicon `.app` and `.dmg` with an ad-hoc signature so the application bundle passes local resource validation. It is not signed with an Apple Developer certificate or notarized, so a copy downloaded from the Internet may still require Finder → right-click → Open on first launch. Windows path detection, process management, and tray behavior remain Win32-first.
 
 ## License
 
